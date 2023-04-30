@@ -1,0 +1,422 @@
+{
+    "usuarios": [
+      {
+        "id": 1,
+        "nombre": "Javier",
+        "apellido": "Vitulano",
+        "email": "javier.vitulano@mail.com",
+        "password": "12345678",
+        "token": "hjsdfJHFDSAFMsaDsan12sdanjjadashj3FDBEWH",
+        "role": "admin"
+      },
+      {
+        "nombre": "Facundo",
+        "apellido": "Perez",
+        "email": "juan@email.com",
+        "password": "123456",
+        "token": "nmdsgfjhuMDKSAFJASDK327SJDKANjsadnsah",
+        "role": "user",
+        "id": 4
+      }
+    ],
+    "cursos":[
+    {
+        "id": 1,
+        "nombreCurso": "Angular",
+        "fechaInicio": "2023-01-01T01:27:59.631Z",
+        "fechaFin": "2023-03-03T01:27:59.631Z"
+      },
+      {
+        "id": 2,
+        "nombreCurso": "Data Analytics",
+        "fechaInicio": "2023-01-01T01:27:59.631Z",
+        "fechaFin": "2023-03-03T01:27:59.631Z"
+      },
+      {
+        "id": 3,
+        "nombreCurso": "Data Scientist",
+        "fechaInicio": "2023-01-01T01:27:59.631Z",
+        "fechaFin": "2023-03-03T01:27:59.631Z"
+      },
+      {
+        "id": 4,
+        "nombreCurso": "Desarrollo Frontend React",
+        "fechaInicio": "2023-03-03T01:27:59.631Z",
+        "fechaFin": "2023-06-06T01:27:59.631Z"
+      },
+      {
+        "id": 5,
+        "nombreCurso": "Desarrollo UX/UI",
+        "fechaInicio": "2023-03-03T01:27:59.631Z",
+        "fechaFin": "2023-06-06T01:27:59.631Z"
+      },
+      {
+        "id": 6,
+        "nombreCurso": "Diseño UX Research",
+        "fechaInicio": "2023-03-03T01:27:59.631Z",
+        "fechaFin": "2023-06-06T01:27:59.631Z"
+      },
+      {
+        "id": 7,
+        "nombreCurso": "Java script",
+        "fechaInicio": "2023-06-06T01:27:59.631Z",
+        "fechaFin": "2023-09-09T01:27:59.631Z"
+      },
+      {
+        "id": 8,
+        "nombreCurso": "Marketing Digital",
+        "fechaInicio": "2023-06-06T01:27:59.631Z",
+        "fechaFin": "2023-09-09T01:27:59.631Z"
+      },
+      {
+        "id": 9,
+        "nombreCurso": "Product Design",
+        "fechaInicio": "2023-06-06T01:27:59.631Z",
+        "fechaFin": "2023-09-09T01:27:59.631Z"
+      },
+      {
+        "id": 10,
+        "nombreCurso": "Product Web",
+        "fechaInicio": "2023-09-09T01:27:59.631Z",
+        "fechaFin": "2023-12-12T01:27:59.631Z"
+      },
+      {
+        "id": 11,
+        "nombreCurso": "Programación WEB",
+        "fechaInicio": "2023-09-09T01:27:59.631Z",
+        "fechaFin": "2023-12-12T01:27:59.631Z"
+
+      }
+    ],
+    "alumnos":[
+          {
+      "nombre": "Camila",
+      "apellido": "Alonso",
+      "email": "Camila.Alonso@gmail.com",
+      "numeroDocumento": 28250309,
+      "fechaDeAlta":"2023-04-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Alejandro",
+      "apellido": "Álvarez",
+      "email": "Alejandro.Alvarez@gmail.com",
+      "numeroDocumento": 27250311,
+      "fechaDeAlta":"2023-01-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Nadia",
+      "apellido": "Díaz",
+      "email": "Nadia.Diaz@gmail.com",
+      "numeroDocumento": 27250314,
+      "fechaDeAlta": "2023-01-03T01:27:59.631Z"
+    },
+    {
+      "nombre": "Elvira",
+      "apellido": "Fernández",
+      "email": "Elvira.Fernandez@gmail.com",
+      "numeroDocumento": 29250304,
+      "fechaDeAlta": "2023-02-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Maximiliano",
+      "apellido": "García",
+      "email": "Maximiliano.Garcia@gmail.com",
+      "numeroDocumento": 29250302,
+      "fechaDeAlta": "2023-04-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Manuel",
+      "apellido": "González",
+      "email": "Manuel.Gonzalez@gmail.com",
+      "numeroDocumento": 29250303,
+      "fechaDeAlta": "2023-04-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Javier",
+      "apellido": "Hernández",
+      "email": "Javier.Hernandez@gmail.com",
+      "numeroDocumento": 27250310,
+      "fechaDeAlta": "2023-03-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Yesica",
+      "apellido": "López",
+      "email": "Yesica.Lopez@gmail.com",
+      "numeroDocumento": 28250305,
+      "fechaDeAlta": "2023-03-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Mariela",
+      "apellido": "Martínez",
+      "email": "Mariela.Martinez@gmail.com",
+      "numeroDocumento": 28250306,
+      "fechaDeAlta": "2023-03-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Darío",
+      "apellido": "Moreno",
+      "email": "Dario.Moreno@gmail.com",
+      "numeroDocumento": 27250313,
+      "fechaDeAlta": "2023-02-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Nicolas",
+      "apellido": "Muñoz",
+      "email": "Nicolas.Munoz@gmail.com",
+      "numeroDocumento": 27250312,
+      "fechaDeAlta": "2023-02-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "email": "Juan.Perez@gmail.com",
+      "numeroDocumento": 29250301,
+      "fechaDeAlta": "2023-02-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Micaela",
+      "apellido": "Romero",
+      "email": "Micaela.Romero@gmail.com",
+      "numeroDocumento": 28250308,
+      "fechaDeAlta": "2023-01-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Fernando",
+      "apellido": "Ruiz",
+      "email": "Fernando.Ruiz@gmail.com",
+      "numeroDocumento": 27250315,
+      "fechaDeAlta": "2023-01-01T01:27:59.631Z"
+    },
+    {
+      "nombre": "Lara",
+      "apellido": "Sánchez",
+      "email": "Lara.Sanchez@gmail.com",
+      "numeroDocumento": 28250307,
+      "fechaDeAlta": "2023-01-01T01:27:59.631Z"
+    }
+    ],
+    "inscripciones":[
+        {
+            "idCurso": 1,
+            "nombreCurso": "Angular",
+            "fechaInicioCurso": "2023-01-01T01:27:59.631Z",
+            "fechaFinCurso": "2023-03-03T01:27:59.631Z",
+            "nombreAlumno": "Camila",
+            "apellidoAlumno": "Alonso",
+            "emailAlumno": "Camila.Alonso@gmail.com",
+            "numeroDocumentoAlumno": 28250309
+          },
+          {
+            "idCurso": 2,
+            "nombreCurso": "Data Analytics",
+            "fechaInicioCurso": "2023-01-01T01:27:59.631Z",
+            "fechaFinCurso": "2023-03-03T01:27:59.631Z",
+            "nombreAlumno": "Alejandro",
+            "apellidoAlumno": "Álvarez",
+            "emailAlumno": "Alejandro.Álvarez@gmail.com",
+            "numeroDocumentoAlumno": 27250311
+          },
+          {
+            "idCurso": 3,
+            "nombreCurso": "Data Scientist",
+            "fechaInicioCurso": "2023-01-01T01:27:59.631Z",
+            "fechaFinCurso": "2023-03-03T01:27:59.631Z",
+            "nombreAlumno": "Nadia",
+            "apellidoAlumno": "Díaz",
+            "emailAlumno": "Nadia.Díaz@gmail.com",
+            "numeroDocumentoAlumno": 27250314
+          },
+          {
+            "idCurso": 4,
+            "nombreCurso": "Desarrollo Frontend React",
+            "fechaInicioCurso": "2023-03-03T01:27:59.631Z",
+            "fechaFinCurso": "2023-06-06T01:27:59.631Z",
+            "nombreAlumno": "Elvira",
+            "apellidoAlumno": "Fernández",
+            "emailAlumno": "Elvira.Fernández@gmail.com",
+            "numeroDocumentoAlumno": 29250304
+          },
+          {
+            "idCurso": 5,
+            "nombreCurso": "Desarrollo UX/UI",
+            "fechaInicioCurso": "2023-03-03T01:27:59.631Z",
+            "fechaFinCurso": "2023-06-06T01:27:59.631Z",
+            "nombreAlumno": "Maximiliano",
+            "apellidoAlumno": "García",
+            "emailAlumno": "Maximiliano.García@gmail.com",
+            "numeroDocumentoAlumno": 29250302
+          },
+          {
+            "idCurso": 6,
+            "nombreCurso": "Diseño UX Research",
+            "fechaInicioCurso": "2023-03-03T01:27:59.631Z",
+            "fechaFinCurso": "2023-06-06T01:27:59.631Z",
+            "nombreAlumno": "Manuel",
+            "apellidoAlumno": "González",
+            "emailAlumno": "Manuel.González@gmail.com",
+            "numeroDocumentoAlumno": 29250303
+          },
+          {
+            "idCurso": 7,
+            "nombreCurso": "Java script",
+            "fechaInicioCurso": "2023-06-06T01:27:59.631Z",
+            "fechaFinCurso": "2023-09-09T01:27:59.631Z",
+            "nombreAlumno": "Javier",
+            "apellidoAlumno": "Hernández",
+            "emailAlumno": "Javier.Hernández@gmail.com",
+            "numeroDocumentoAlumno": 27250310
+          },
+          {
+            "idCurso": 8,
+            "nombreCurso": "Marketing Digital",
+            "fechaInicioCurso": "2023-06-06T01:27:59.631Z",
+            "fechaFinCurso": "2023-09-09T01:27:59.631Z",
+            "nombreAlumno": "Yesica",
+            "apellidoAlumno": "López",
+            "emailAlumno": "Yesica.López@gmail.com",
+            "numeroDocumentoAlumno": 28250305
+          },
+          {
+            "idCurso": 9,
+            "nombreCurso": "Product Design",
+            "fechaInicioCurso": "2023-06-06T01:27:59.631Z",
+            "fechaFinCurso": "2023-09-09T01:27:59.631Z",
+            "nombreAlumno": "Mariela",
+            "apellidoAlumno": "Martínez",
+            "emailAlumno": "Mariela.Martínez@gmail.com",
+            "numeroDocumentoAlumno": 28250306
+          },
+          {
+            "idCurso": 10,
+            "nombreCurso": "Product Web",
+            "fechaInicioCurso": "2023-09-09T01:27:59.631Z",
+            "fechaFinCurso": "2023-12-12T01:27:59.631Z",
+            "nombreAlumno": "Darío",
+            "apellidoAlumno": "Moreno",
+            "emailAlumno": "Darío.Moreno@gmail.com",
+            "numeroDocumentoAlumno": 27250313
+          },
+          {
+            "idCurso": 11,
+            "nombreCurso": "Programación WEB",
+            "fechaInicioCurso": "2023-09-09T01:27:59.631Z",
+            "fechaFinCurso": "2023-12-12T01:27:59.631Z",
+            "nombreAlumno": "Nicolas",
+            "apellidoAlumno": "Muñoz",
+            "emailAlumno": "Nicolas.Muñoz@gmail.com",
+            "numeroDocumentoAlumno": 27250312
+          },
+      
+          {
+            "idCurso": 5,
+            "nombreCurso": "Desarrollo UX/UI",
+            "fechaInicioCurso": "2023-03-03T01:27:59.631Z",
+            "fechaFinCurso": "2023-06-06T01:27:59.631Z",
+            "nombreAlumno": "Camila",
+            "apellidoAlumno": "Alonso",
+            "emailAlumno": "Camila.Alonso@gmail.com",
+            "numeroDocumentoAlumno": 28250309
+          },
+          {
+            "idCurso": 11,
+            "nombreCurso": "Programación WEB",
+            "fechaInicioCurso": "2023-09-09T01:27:59.631Z",
+            "fechaFinCurso": "2023-12-12T01:27:59.631Z",
+            "nombreAlumno": "Alejandro",
+            "apellidoAlumno": "Álvarez",
+            "emailAlumno": "Alejandro.Álvarez@gmail.com",
+            "numeroDocumentoAlumno": 27250311
+          },
+          {
+            "idCurso": 10,
+            "nombreCurso": "Product Web",
+            "fechaInicioCurso": "2023-09-09T01:27:59.631Z",
+            "fechaFinCurso": "2023-12-12T01:27:59.631Z",
+            "nombreAlumno": "Nadia",
+            "apellidoAlumno": "Díaz",
+            "emailAlumno": "Nadia.Díaz@gmail.com",
+            "numeroDocumentoAlumno": 27250314
+          },
+          {
+            "idCurso": 9,
+            "nombreCurso": "Product Design",
+            "fechaInicioCurso": "2023-06-06T01:27:59.631Z",
+            "fechaFinCurso": "2023-09-09T01:27:59.631Z",
+            "nombreAlumno": "Elvira",
+            "apellidoAlumno": "Fernández",
+            "emailAlumno": "Elvira.Fernández@gmail.com",
+            "numeroDocumentoAlumno": 29250304
+          },
+          {
+            "idCurso": 8,
+            "nombreCurso": "Marketing Digital",
+            "fechaInicioCurso": "2023-06-06T01:27:59.631Z",
+            "fechaFinCurso": "2023-09-09T01:27:59.631Z",
+            "nombreAlumno": "Maximiliano",
+            "apellidoAlumno": "García",
+            "emailAlumno": "Maximiliano.García@gmail.com",
+            "numeroDocumentoAlumno": 29250302
+          },
+          {
+            "idCurso": 7,
+            "nombreCurso": "Java script",
+            "fechaInicioCurso": "2023-06-06T01:27:59.631Z",
+            "fechaFinCurso": "2023-09-09T01:27:59.631Z",
+            "nombreAlumno": "Manuel",
+            "apellidoAlumno": "González",
+            "emailAlumno": "Manuel.González@gmail.com",
+            "numeroDocumentoAlumno": 29250303
+          },
+          {
+            "idCurso": 5,
+            "nombreCurso": "Desarrollo UX/UI",
+            "fechaInicioCurso": "2023-03-03T01:27:59.631Z",
+            "fechaFinCurso": "2023-06-06T01:27:59.631Z",
+            "nombreAlumno": "Javier",
+            "apellidoAlumno": "Hernández",
+            "emailAlumno": "Javier.Hernández@gmail.com",
+            "numeroDocumentoAlumno": 27250310
+          },
+          {
+            "idCurso": 4,
+            "nombreCurso": "Desarrollo Frontend React",
+            "fechaInicioCurso": "2023-03-03T01:27:59.631Z",
+            "fechaFinCurso": "2023-06-06T01:27:59.631Z",
+            "nombreAlumno": "Yesica",
+            "apellidoAlumno": "López",
+            "emailAlumno": "Yesica.López@gmail.com",
+            "numeroDocumentoAlumno": 28250305
+          },
+          {
+            "idCurso": 3,
+            "nombreCurso": "Data Scientist",
+            "fechaInicioCurso": "2023-01-01T01:27:59.631Z",
+            "fechaFinCurso": "2023-03-03T01:27:59.631Z",
+            "nombreAlumno": "Mariela",
+            "apellidoAlumno": "Martínez",
+            "emailAlumno": "Mariela.Martínez@gmail.com",
+            "numeroDocumentoAlumno": 28250306
+          },
+          {
+            "idCurso": 2,
+            "nombreCurso": "Data Analytics",
+            "fechaInicioCurso": "2023-01-01T01:27:59.631Z",
+            "fechaFinCurso": "2023-03-03T01:27:59.631Z",
+            "nombreAlumno": "Darío",
+            "apellidoAlumno": "Moreno",
+            "emailAlumno": "Darío.Moreno@gmail.com",
+            "numeroDocumentoAlumno": 27250313
+          },
+          {
+            "idCurso": 1,
+            "nombreCurso": "Angular",
+            "fechaInicioCurso": "2023-01-01T01:27:59.631Z",
+            "fechaFinCurso": "2023-03-03T01:27:59.631Z",
+            "nombreAlumno": "Nicolas",
+            "apellidoAlumno": "Muñoz",
+            "emailAlumno": "Nicolas.Muñoz@gmail.com",
+            "numeroDocumentoAlumno": 27250312
+          }        
+    ]
+  }
+  
