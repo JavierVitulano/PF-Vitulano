@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
       .pipe(
         map((usuarioAutenticado) => {
           if (usuarioAutenticado?.role !== 'admin') {
-            alert('No tienes permiso')
+            alert('No posee permiso para acceder a este modulo')
             return false;
           } else {
             return true;

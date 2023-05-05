@@ -7,17 +7,22 @@ interface NavItem{
 const links: NavItem[] = [{
     path: 'alumnos',
     title: 'Alumnos',
-    icon: 'person', 
+    icon: 'school', 
 },
 {
     path: 'cursos',
     title: 'Cursos',
-    icon: 'school', 
+    icon: 'history_edu',
 },
 {
     path: 'inscripciones',
     title: 'Inscripciones',
     icon: 'assignment_ind',
+},
+{
+    path: 'usuarios',
+    title: 'Usuarios',
+    icon: 'person', 
 }]
 
 export default links;

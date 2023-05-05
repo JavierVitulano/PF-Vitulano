@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InscripcionesComponent } from './pages/inscripciones/inscripciones.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { AdminGuard } from '../auth/guards/admin.guard';
 
 const routes: Routes =[
   {path: 'alumnos',
@@ -13,7 +15,11 @@ const routes: Routes =[
   },
   {path: 'inscripciones',
   component : InscripcionesComponent,
-  },    
+  },
+  {path: 'usuarios',
+  canActivate: [AdminGuard],
+  loadChildren: ()=> import ('./pages/usuarios/usuarios.module').then((m)=> m.UsuariosModule)
+  }      
 ]
 
 @NgModule({
