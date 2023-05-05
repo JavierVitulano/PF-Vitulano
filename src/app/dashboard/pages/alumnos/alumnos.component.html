@@ -1,5 +1,4 @@
 <div class="mb-3"><h1 [appFontSize]="20">Listado de alumnos</h1></div>
-
 <button
   mat-flat-button
   color="primary"
@@ -9,6 +8,7 @@
   <mat-icon>add</mat-icon>
   Agregar alumno
 </button>
+
 <mat-form-field>
   <mat-label>Buscar</mat-label>
   <input
@@ -46,11 +46,14 @@
         {{ alumno.fechaDeAlta | date : "dd/MM/YYYY" }}
       </td>
     </ng-container>
-
+    
     <!-- opciones Delete -->
     <ng-container matColumnDef="opcionesDelete">
+      
       <th mat-header-cell *matHeaderCellDef></th>
+      
       <td mat-cell *matCellDef="let alumno">
+        <ng-template [ngIf]="(authUser$ | async)?.role === 'admin'">  
         <button
           mat-icon-button
           class="opciones-icon-delete"
@@ -60,13 +63,16 @@
         >
           <mat-icon>delete</mat-icon>
         </button>
+      </ng-template>  
       </td>
+    
     </ng-container>
-
+    
     <!-- opciones Edit -->
     <ng-container matColumnDef="opcionesEdit">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let alumno">
+        <ng-template [ngIf]="(authUser$ | async)?.role === 'admin'"> 
         <button
           mat-icon-button
           class="opciones-icon-delete"
@@ -75,6 +81,7 @@
         >
           <mat-icon>edit</mat-icon>
         </button>
+      </ng-template>  
       </td>
     </ng-container>
 

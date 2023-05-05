@@ -6,7 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { CursosService } from './Services/cursos.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/AuthService';
+import { Usuario } from 'src/app/core/models';
 
 export interface Curso {
   id: number;
@@ -47,11 +49,14 @@ export class CursosComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+  authUser$: Observable<Usuario | null>;
+
   constructor(
     private matDialog: MatDialog,
     private cursosService: CursosService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {
     // this.cursosService.obtenerCurso().subscribe((cursos) => {
     //   this.dataSource.data = cursos;
@@ -62,6 +67,7 @@ export class CursosComponent implements AfterViewInit {
     //     this.dataSource.data = cursos;
     //   },
     // });
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado()
   }
 
   ngOnDestroy(): void {

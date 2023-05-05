@@ -6,7 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmacionComponent } from 'src/app/shared/dialog/dialog-confirmacion/dialog-confirmacion.component';
 import { AlumnosService } from './Services/alumnos.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/AuthService';
+import { Usuario } from 'src/app/core/models';
 
 export interface Alumno {
   nombre: string;
@@ -49,13 +51,16 @@ export class AlumnosComponent implements AfterViewInit {
   }
 
   alumnosSuscription: Subscription | null = null;
+  authUser$: Observable<Usuario | null>;
   
   constructor(
     private matDialog: MatDialog,
     private alumnosService: AlumnosService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado()
     // this.alumnosService.obtenerAlumnos().subscribe((alumnos) => {
     //   this.dataSource.data = alumnos;
     // });
@@ -70,6 +75,8 @@ export class AlumnosComponent implements AfterViewInit {
         this.dataSource.data = alumnos;
       },
     });
+
+   
   }
   abrirABMAlumnos(): void {
     const dialog = this.matDialog.open(AbmAlumnosComponent);

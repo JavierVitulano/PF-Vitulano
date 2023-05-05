@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, map, throwError ,of} from 'rxjs';
 import { Usuario } from 'src/app/core/models';
 import { enviroment } from 'src/environments/environments';
 //import { Usuario } from 'src/app/interfaces/Usuario';
@@ -25,6 +25,11 @@ export class AuthService {
     return this.authUser$.asObservable();
   }
 
+  private establecerUsuarioAutenticado(usuario: Usuario): void {
+    this.authUser$.next(usuario);
+  }
+
+
   login(formValue: LoginFormValue): void {
     this.httpClient.get<Usuario[]>(
       `${enviroment.apiBaseUrl}/usuarios`,
@@ -39,7 +44,7 @@ export class AuthService {
         const usuarioAutenticado = usuarios[0];
         if (usuarioAutenticado) {
           localStorage.setItem('token', usuarioAutenticado.token)
-          this.authUser$.next(usuarioAutenticado);
+          this.establecerUsuarioAutenticado(usuarioAutenticado);
           this.router.navigate(['/dashboard']);
         } else {
           alert('¡Usuario y contraseña incorrectos!')
@@ -73,8 +78,9 @@ export class AuthService {
           return !!usuarioAutenticado;
         }),
         catchError((err) => {
-          alert('Error al verificar el token');
-          return throwError(() => err);
+          return of(false);
+          //alert('Error al verificar el token');
+          //return throwError(() => err);
         })
       );
   }

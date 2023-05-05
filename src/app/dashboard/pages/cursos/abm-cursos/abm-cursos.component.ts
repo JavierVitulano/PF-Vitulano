@@ -22,6 +22,7 @@ export class AbmCursosComponent implements OnInit {
     fechaInicio: this.fechaInicioControl,
     fechaFin: this.fechaFinControl,
   });
+  
   constructor(
     private dialogRef: MatDialogRef<AbmCursosComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any
