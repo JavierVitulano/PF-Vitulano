@@ -54,8 +54,8 @@ export class InscripcionesComponent {
     this.dataSourceInscripcion.paginator = this.paginator;
   }
   inscripcionControl = new FormControl('');
-  filteredCursos: Observable<Curso[]>;
-  filteredAlumnos: Observable<Alumno[]>;
+  //filteredCursos: Observable<Curso[]>;
+  //filteredAlumnos: Observable<Alumno[]>;
   idCursoInsc: number | null = null;
   idAlumnoInsc: number | null = null;
   nombreCursoControl = new FormControl('', [Validators.required]);
@@ -84,25 +84,25 @@ export class InscripcionesComponent {
     //  this.dataSourceInscripcion.data = inscripcion;
     //});
 
-    this.filteredCursos = this.nombreCursoControl.valueChanges.pipe(
-      startWith(''),
-      map((curso) =>
-        curso ? this._filteredCursos(curso) : this.dataSourceCurso.data.slice()
-      )
-    );
+    // this.filteredCursos = this.nombreCursoControl.valueChanges.pipe(
+    //   startWith(''),
+    //   map((curso) =>
+    //     curso ? this._filteredCursos(curso) : this.dataSourceCurso.data.slice()
+    //   )
+    // );
 
     this.alumnoService.obtenerAlumnos().subscribe((alumno) => {
       this.dataSourceAlumno.data = alumno;
     });
 
-    this.filteredAlumnos = this.nombreAlumnoControl.valueChanges.pipe(
-      startWith(''),
-      map((alumno) =>
-        alumno
-          ? this._filteredAlumnos(alumno)
-          : this.dataSourceAlumno.data.slice()
-      )
-    );
+    // this.filteredAlumnos = this.nombreAlumnoControl.valueChanges.pipe(
+    //   startWith(''),
+    //   map((alumno) =>
+    //     alumno
+    //       ? this._filteredAlumnos(alumno)
+    //       : this.dataSourceAlumno.data.slice()
+    //   )
+    // );
   }
   ngOnDestroy(): void {
     this.inscripcionSuscription?.unsubscribe();
@@ -115,21 +115,21 @@ export class InscripcionesComponent {
     });
   }
 
-  private _filteredCursos(value: string): Curso[] {
-    const filterValue = value.toLowerCase();
+  // private _filteredCursos(value: string): Curso[] {
+  //   const filterValue = value.toLowerCase();
 
-    return this.dataSourceCurso.data.filter((curso) =>
-      curso.nombreCurso.toLowerCase().includes(filterValue)
-    );
-  }
+  //   return this.dataSourceCurso.data.filter((curso) =>
+  //     curso.nombreCurso.toLowerCase().includes(filterValue)
+  //   );
+  // }
 
-  private _filteredAlumnos(value: string): Alumno[] {
-    const filterValue = value.toLowerCase();
+  // private _filteredAlumnos(value: string): Alumno[] {
+  //   const filterValue = value.toLowerCase();
 
-    return this.dataSourceAlumno.data.filter((alumno) =>
-      alumno.apellido.toLowerCase().includes(filterValue)
-    );
-  }
+  //   return this.dataSourceAlumno.data.filter((alumno) =>
+  //     alumno.apellido.toLowerCase().includes(filterValue)
+  //   );
+  // }
 
   guardarCurso(cursoSeleccionado: Curso): void {
     this.idCursoInsc = cursoSeleccionado.id;

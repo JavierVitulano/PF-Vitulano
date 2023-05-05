@@ -3,8 +3,13 @@
   <div class="grid divCurso">
     <!-- Nombre del curso -->
     <mat-form-field class="w-4" appearance="fill">
-      <mat-label>Ingrese nombre del curso</mat-label>
-      <input
+      <mat-label>Seleccione el curso</mat-label>
+
+      <mat-select  [formControl]="nombreCursoControl" >
+        <mat-option (click)="guardarCurso(option)" [value]="option.nombreCurso" *ngFor="let option of dataSourceCurso.data">{{ option.nombreCurso }}</mat-option>
+      </mat-select>
+
+      <!-- <input
         matInput
         aria-label="Nombre del curso"
         [matAutocomplete]="curso"
@@ -19,13 +24,20 @@
           <img alt="" class="example-option-img" height="25" />
           <small> {{ curso.nombreCurso }}</small>
         </mat-option>
-      </mat-autocomplete>
+      </mat-autocomplete> -->
+
+
     </mat-form-field>
 
     <!-- Nombre del alumno -->
     <mat-form-field class="w-4" appearance="fill">
-      <mat-label>Ingrese nombre del alumno</mat-label>
-      <input
+      <mat-label>Seleccion el alumno</mat-label>
+
+      <mat-select  [formControl]="nombreAlumnoControl">
+        <mat-option (click)="guardarAlumno(option)"  [value]="option.apellido +', '+ option.nombre" *ngFor="let option of dataSourceAlumno.data">{{ option | nombreCompleto}}</mat-option>
+      </mat-select>
+
+      <!-- <input
         matInput
         aria-label="Nombre del alumno"
         [matAutocomplete]="alumno"
@@ -40,7 +52,8 @@
           <img alt="" class="example-option-img" height="25" />
           <small> {{ alumno | nombreCompleto }}</small>
         </mat-option>
-      </mat-autocomplete>
+      </mat-autocomplete> -->
+
     </mat-form-field>
     <button
       class="botonGuardar"
