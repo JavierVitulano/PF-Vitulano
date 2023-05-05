@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { AuthService } from '../services/AuthService';
 
@@ -7,7 +7,8 @@ import { AuthService } from '../services/AuthService';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,7 +18,7 @@ export class AdminGuard implements CanActivate {
         map((usuarioAutenticado) => {
           if (usuarioAutenticado?.role !== 'admin') {
             alert('No posee permiso para acceder a este modulo')
-            return false;
+            return this.router.createUrlTree(['dashboard']);
           } else {
             return true;
           }

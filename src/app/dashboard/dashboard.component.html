@@ -2,9 +2,12 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <mat-nav-list>
       <a [routerLink]="link.path" mat-list-item *ngFor="let link of links">
+        <ng-template [ngIf]="((authUser$ | async)?.role === 'admin' && link.path==='usuarios') || link.path!='usuarios'"> 
         <mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
-        {{ link.title }}</a
-      >
+        {{ link.title }}
+      </ng-template>
+        </a
+      >      
     </mat-nav-list>
   </mat-drawer>
   <div class="example-sidenav-content">
