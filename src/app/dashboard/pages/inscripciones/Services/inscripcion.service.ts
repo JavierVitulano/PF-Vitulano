@@ -62,6 +62,7 @@ export class InscripcionService {
     //return this.cursosService.obtenerCursoPorId('1');
   }
   inscribirAlumno(nuevaInscripcion: Inscripcion) {
+    this.httpClient.post<Inscripcion[]>(`${enviroment.apiBaseUrl}/inscripciones/`,nuevaInscripcion).subscribe(() => console.log("inscripcion nueva"));
     this.inscripcion$.pipe(take(1)).subscribe({
       next: (inscripciones) => {
         this.inscripcion$.next([nuevaInscripcion, ...inscripciones]);
@@ -70,6 +71,7 @@ export class InscripcionService {
   }
 
   eliminarInscripcion(inscripcionAEliminar: Inscripcion): Observable<Inscripcion[]> {
+    this.httpClient.delete<Inscripcion[]>(`${enviroment.apiBaseUrl}/inscripciones/${inscripcionAEliminar.id}`).subscribe(() => console.log("inscripcion deleted"));
     this.inscripcion$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         const calumnosActualizados = alumnos.filter(

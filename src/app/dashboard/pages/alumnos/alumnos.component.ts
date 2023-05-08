@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/auth/services/AuthService';
 import { Usuario } from 'src/app/core/models';
 
 export interface Alumno {
+  id: number,
   nombre: string;
   apellido: string;
   email: string;
@@ -123,7 +124,7 @@ export class AlumnosComponent implements AfterViewInit {
     });
     dialog.afterClosed().subscribe((valorDelFormulario) => {
       if (valorDelFormulario) {
-        this.alumnosService.editarAlumno(alumnoAEditar.numeroDocumento,valorDelFormulario);
+        this.alumnosService.editarAlumno(alumnoAEditar.id,valorDelFormulario);
         // this.dataSource.data = this.dataSource.data.map((alumnoActual) =>
         //   alumnoActual.numeroDocumento === alumnoAEditar.numeroDocumento
         //     ? { ...alumnoActual, ...valorDelFormulario } 

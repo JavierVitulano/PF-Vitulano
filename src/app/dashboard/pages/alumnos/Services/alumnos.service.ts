@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, map, mergeMap, take, tap } from 'rxjs';
 import { Alumno } from '../alumnos.component';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from 'src/environments/environments';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -24,20 +25,28 @@ export class AlumnosService {
     );
   }
 
-  obtenerAlumnoPorId(numeroDocumento: number): Observable<Alumno | undefined> {
+  obtenerAlumnoPorId(id: number): Observable<Alumno | undefined> {
     return this.estudiantes$
       .asObservable()
       .pipe(
         map((alumnos) =>
-          alumnos.find((a) => a.numeroDocumento === numeroDocumento)
+          alumnos.find((a) => a.id === id)
         )
       );
   }
+  // crearId(id: number){
+
+  //   while (this.obtenerAlumnoPorId(id)) {
+  //     id = id+1;
+  //   }
+  //   return id;
+  // }
 
   crearAlumno(nuevoAlumno: Alumno)  : Observable<Alumno[]> {
+   this.httpClient.post<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos`,{...nuevoAlumno,fechaDeAlta: formatDate ( new Date(),'yyyy-MM-dd HH:mm','en')}).subscribe(() => console.log("alumno nuevo"));
     this.estudiantes$.pipe(take(1)).subscribe({
       next: (alumnos) => {
-        this.estudiantes$.next([nuevoAlumno, ...alumnos]);
+        this.estudiantes$.next([{...nuevoAlumno,fechaDeAlta: new Date()}, ...alumnos]);
       },
     });
 
@@ -45,10 +54,11 @@ export class AlumnosService {
   }
 
   eliminarAlumno(alumnoAEliminar: Alumno) : Observable<Alumno[]>{
+    this.httpClient.delete<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos/${alumnoAEliminar.id}`).subscribe(() => console.log("alumno deleted"));
     this.estudiantes$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         const calumnosActualizados = alumnos.filter(
-          (alumno) => alumno.numeroDocumento !== alumnoAEliminar.numeroDocumento
+          (alumno) => alumno.id !== alumnoAEliminar.id
         );
         this.estudiantes$.next(calumnosActualizados);
       },
@@ -59,10 +69,13 @@ export class AlumnosService {
     alumnoId: number,
     actualizacion: Partial<Alumno>
   ): Observable<Alumno[]> {
+    if (actualizacion.fechaDeAlta){
+    this.httpClient.put<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos/${alumnoId}`,{...actualizacion,fechaDeAlta: formatDate (actualizacion.fechaDeAlta,'yyyy-MM-dd HH:mm','en')}).subscribe(() => console.log("alumno editado"));
+    }
     this.estudiantes$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         const alumnoActualizados = alumnos.map((alumno) => {
-          if (alumno.numeroDocumento === alumnoId) {
+          if (alumno.id === alumnoId) {
             return {
               ...alumno,
               ...actualizacion,

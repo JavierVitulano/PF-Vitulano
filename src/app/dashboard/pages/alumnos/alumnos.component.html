@@ -59,7 +59,7 @@
           class="opciones-icon-delete"
           aria-label="Example icon-button with heart icon"
           (click)="eliminar(alumno)"
-          value="{{ alumno.numeroDocumento }}"
+          value="{{ alumno.id }}"
         >
           <mat-icon>delete</mat-icon>
         </button>
@@ -93,8 +93,8 @@
           mat-icon-button
           class="opciones-icon-delete"
           aria-label="Example icon-button with heart icon"
-          (click)="detalle(alumno.numeroDocumento)"
-          value="{{ alumno.numeroDocumento }}"
+          (click)="detalle(alumno.id)"
+          value="{{ alumno.id }}"
         >
           <mat-icon>preview</mat-icon>
         </button>

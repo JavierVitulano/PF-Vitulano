@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmacionComponent } from 'src/app/shared/dialog/dialog-confirmacion/dialog-confirmacion.component';
 
 export interface Inscripcion {
+  id: number;
   idCurso: number;
   nombreCurso: string;
   fechaInicioCurso: Date;
@@ -136,10 +137,11 @@ export class InscripcionesComponent {
   }
 
   guardarAlumno(alumnoSeleccionado: Alumno): void {
-    this.idAlumnoInsc = alumnoSeleccionado.numeroDocumento;
+    this.idAlumnoInsc = alumnoSeleccionado.id;
   }
   cursolog: any;
   alumnolog: any;
+  nuevaInscripcion: any;
   asignarCurso(): void {
     if (this.idCursoInsc && this.idAlumnoInsc) {
       this.cursoService
@@ -153,20 +155,22 @@ export class InscripcionesComponent {
         .subscribe((inscripciones) => {
           this.alumnolog = inscripciones;
         });
-
-      this.dataSourceInscripcion.data = [
-        {
-          idCurso: this.idCursoInsc,
-          nombreCurso: this.cursolog.nombreCurso,
-          fechaInicioCurso: this.cursolog.fechaInicio,
-          fechaFinCurso: this.cursolog.fechaFin,
-          nombreAlumno: this.alumnolog.nombre,
-          apellidoAlumno: this.alumnolog.apellido,
-          emailAlumno: this.alumnolog.email,
-          numeroDocumentoAlumno: this.alumnolog.numeroDocumento,
-        },
-        ...this.dataSourceInscripcion.data,
-      ];
+        
+        this.nuevaInscripcion= {
+            idCurso: this.idCursoInsc,
+            nombreCurso: this.cursolog.nombreCurso,
+            fechaInicioCurso: this.cursolog.fechaInicio,
+            fechaFinCurso: this.cursolog.fechaFin,
+            nombreAlumno: this.alumnolog.nombre,
+            apellidoAlumno: this.alumnolog.apellido,
+            emailAlumno: this.alumnolog.email,
+            numeroDocumentoAlumno: this.alumnolog.numeroDocumento,
+          };
+          this.inscripcionService.inscribirAlumno(this.nuevaInscripcion);
+      // this.dataSourceInscripcion.data = [
+      //   this.nuevaInscripcion,
+      //   ...this.dataSourceInscripcion.data,
+      // ];
     }
   }
   eliminar(alumnoAEliminar: Inscripcion): void {

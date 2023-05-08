@@ -30,6 +30,7 @@ export class UsuarioService {
   }
 
   eliminarUsuario(usuarioAEliminar: Usuario): Observable<Usuario[]> {
+    this.httpClient.delete<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios/${usuarioAEliminar.id}`).subscribe(() => console.log("usuario deleted"));
     this.usuarios$.pipe(take(1)).subscribe({
       next: (usuarios) => {
         const usuariosActualizados = usuarios.filter(
@@ -55,6 +56,7 @@ generarToken():string{
     return result;
 }
   crearUsuario(nuevoUsuario: Usuario) : Observable<Usuario[]> {
+    this.httpClient.post<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios/`,nuevoUsuario).subscribe(() => console.log("usuario nuevo"));
     this.usuarios$.pipe(take(1)).subscribe({
       next: (usuarios) => {
         this.usuarios$.next([
@@ -79,6 +81,7 @@ generarToken():string{
     usuarioId: number,
     actualizacion: Partial<Usuario>
   ): Observable<Usuario[]> {
+    this.httpClient.put<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios/${usuarioId}`,actualizacion).subscribe(() => console.log("usuario editado"));
      this.usuarios$.pipe(take(1))
     .subscribe({
        next: (usuarios) => {

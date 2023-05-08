@@ -48,7 +48,7 @@ export class DetalleAlumnosComponent implements OnInit {
   ) {
      this.alumnosService
        .obtenerAlumnoPorId(
-         parseInt(this.activatedRoute.snapshot.params['nroDocumento'])
+         parseInt(this.activatedRoute.snapshot.params['id'])
        )
        .pipe(takeUntil(this.destroyed$))
        .subscribe((alumno) => (this.alumno = alumno));
