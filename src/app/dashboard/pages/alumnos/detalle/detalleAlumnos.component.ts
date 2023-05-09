@@ -59,8 +59,8 @@ export class DetalleAlumnosComponent implements OnInit {
 
       if (this.alumno) {
         this.inscripcionService
-          //.obtenerCursosDeAlumno(this.alumno.numeroDocumento)
-          .obtenerAlumnos()
+          .obtenerCursosDeAlumno(this.alumno.numeroDocumento)
+          //.obtenerAlumnos()
           .subscribe((inscripciones) => {
             this.dataSource.data = inscripciones;
           });
@@ -77,11 +77,11 @@ export class DetalleAlumnosComponent implements OnInit {
     //     this.dataSource.data = cursos;
     //   },
     // }); 
-    this.inscripcionSuscription = this.inscripcionService.obtenerInscripcion().subscribe({
-      next: (inscripciones) => {
-        this.dataSource.data = inscripciones;
-      },
-    });    
+    // this.inscripcionSuscription = this.inscripcionService.obtenerInscripcion().subscribe({
+    //   next: (inscripciones) => {
+    //     this.dataSource.data = inscripciones;
+    //   },
+    // });    
   }
 
   eliminar(alumnoAEliminar: Inscripcion): void {
@@ -95,7 +95,7 @@ export class DetalleAlumnosComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-         this.inscripcionService.eliminarInscripcion(alumnoAEliminar)
+         this.inscripcionService.eliminarInscripcionCurso(alumnoAEliminar)
         //  this.dataSource.data = this.dataSource.data.filter(
         //    (alumnoActual) =>
         //      alumnoActual.numeroDocumentoAlumno !==

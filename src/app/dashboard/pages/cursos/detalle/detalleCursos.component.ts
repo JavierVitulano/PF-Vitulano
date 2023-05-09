@@ -44,11 +44,12 @@ export class DetalleCursosComponent {
        .subscribe((curso) => (this.curso = curso));
        if (this.curso){
      this.nombreCursoControl.setValue(this.curso?.nombreCurso);
-      this.inscripcionService
-     .obtenerAlumnosPorCurso(this.curso.id)
-     .subscribe((inscripciones) => {
-       this.dataSource.data = inscripciones;
-     });}
+        this.inscripcionService
+       .obtenerAlumnosPorCurso(this.curso.id)
+       .subscribe((inscripciones) => {
+         this.dataSource.data = inscripciones;
+       });
+    }
   }
 
   ngOnDestroy(): void {
@@ -56,17 +57,17 @@ export class DetalleCursosComponent {
     this.inscripcionSuscription?.unsubscribe();
   }
   ngOnInit(): void {
-    // this.inscripcionSuscription = this.inscripcionService.obtenerAlumnosPorCurso(parseInt(this.activatedRoute.snapshot.params['nroDocumento'])).subscribe({
-    //   next: (alumnos) => {
-    //     this.dataSource.data = alumnos;
+      // this.inscripcionSuscription = this.inscripcionService.obtenerAlumnosPorCurso(parseInt(this.activatedRoute.snapshot.params['id'])).subscribe({
+      //   next: (alumnos) => {
+      //     this.dataSource.data = alumnos;
+      //   },
+      // });
+
+    // this.inscripcionSuscription = this.inscripcionService.obtenerInscripcion().subscribe({
+    //   next: (inscripciones) => {
+    //     this.dataSource.data = inscripciones;
     //   },
     // });
-
-    this.inscripcionSuscription = this.inscripcionService.obtenerInscripcion().subscribe({
-      next: (inscripciones) => {
-        this.dataSource.data = inscripciones;
-      },
-    });
   }
   eliminar(alumnoAEliminar: Inscripcion): void {
     const dialogRef = this.matDialog.open(DialogConfirmacionComponent, {
@@ -81,11 +82,12 @@ export class DetalleCursosComponent {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.dataSource.data = this.dataSource.data.filter(
-          (alumnoActual) =>
-            alumnoActual.numeroDocumentoAlumno !==
-            alumnoAEliminar.numeroDocumentoAlumno
-        );
+        this.inscripcionService.eliminarInscripcionAlumno(alumnoAEliminar)
+        //  this.dataSource.data = this.dataSource.data.filter(
+        //    (alumnoActual) =>
+        //      alumnoActual.numeroDocumentoAlumno !==
+        //      alumnoAEliminar.numeroDocumentoAlumno
+        //  );
       }
     });
   }

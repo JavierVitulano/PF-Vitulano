@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Inscripcion } from '../inscripciones.component';
-import { BehaviorSubject, Observable, map, mergeMap, take, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, of, take, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from 'src/environments/environments';
 
@@ -24,15 +24,26 @@ export class InscripcionService {
     );    
   }
 
-  obtenerAlumnosPorCurso(idCurso: number) 
-  //: Observable<Inscripcion | undefined>
+  obtenerAlumnosPruebaPorCurso(idCurso: number) 
+  //: Observable<Inscripcion >
   {
-      // return this.inscripcion$.asObservable()
-      // .pipe(
-      //   map((inscripcion) => inscripcion.find((c) => c.idCurso === idCurso))
-      // )
+      //  return this.inscripcion$.asObservable()
+      //  .pipe(
+      //    map((inscripcion) => inscripcion.find((c) => c.id === idCurso))
+      //  );
 
-    return this.obtenerAlumnos();
+         
+       
+  }       
+
+  obtenerAlumnosPorCurso(idCurso: number) 
+  //: Observable<Inscripcion >
+  {
+      return this.httpClient.get<Inscripcion[]>(`${enviroment.apiBaseUrl}/inscripciones?idCurso=${idCurso}`)
+      .pipe(
+        tap((inscripciones) => this.inscripcion$.next(inscripciones)),
+        mergeMap(() => this.inscripcion$.asObservable())
+        );
   }
 
   obtenerAlumnos(): Observable<Inscripcion[]> {
@@ -42,10 +53,17 @@ export class InscripcionService {
   obtenerCursosDeAlumno(nroDocumento: number)
   //: Observable<Inscripcion | undefined> 
   {
-    return this.inscripcion$.asObservable()
+
+    return this.httpClient.get<Inscripcion[]>(`${enviroment.apiBaseUrl}/inscripciones?numeroDocumentoAlumno=${nroDocumento}`)
     .pipe(
-      map((inscripcion) => inscripcion.find((c) => c.numeroDocumentoAlumno === nroDocumento))
-    )
+      tap((inscripciones) => this.inscripcion$.next(inscripciones)),
+      mergeMap(() => this.inscripcion$.asObservable())
+      );
+
+    // return this.inscripcion$.asObservable()
+    // .pipe(
+    //   map((inscripcion) => inscripcion.find((c) => c.numeroDocumentoAlumno === nroDocumento))
+    // )
    
     // const v_resultado= this.inscripcion$.asObservable()
     //   .pipe(
@@ -70,6 +88,8 @@ export class InscripcionService {
     });
   }
 
+  
+
   eliminarInscripcion(inscripcionAEliminar: Inscripcion): Observable<Inscripcion[]> {
     this.httpClient.delete<Inscripcion[]>(`${enviroment.apiBaseUrl}/inscripciones/${inscripcionAEliminar.id}`).subscribe(() => console.log("inscripcion deleted"));
     this.inscripcion$.pipe(take(1)).subscribe({
@@ -85,4 +105,32 @@ export class InscripcionService {
     });
     return this.inscripcion$.asObservable();
   }
+
+  eliminarInscripcionCurso(inscripcionAEliminar: Inscripcion): Observable<Inscripcion[]> {
+    this.httpClient.delete<Inscripcion[]>(`${enviroment.apiBaseUrl}/inscripciones/${inscripcionAEliminar.id}`).subscribe(() => console.log("inscripcion deleted"));
+    this.inscripcion$.pipe(take(1)).subscribe({
+      next: (alumnos) => {
+        const calumnosActualizados = alumnos.filter(
+          (inscripcion) =>
+            inscripcion.idCurso != inscripcionAEliminar.idCurso
+        );
+        this.inscripcion$.next(calumnosActualizados);
+      },
+    });
+    return this.inscripcion$.asObservable();
+  }  
+  eliminarInscripcionAlumno(inscripcionAEliminar: Inscripcion): Observable<Inscripcion[]> {
+    this.httpClient.delete<Inscripcion[]>(`${enviroment.apiBaseUrl}/inscripciones/${inscripcionAEliminar.id}`).subscribe(() => console.log("inscripcion deleted"));
+    this.inscripcion$.pipe(take(1)).subscribe({
+      next: (alumnos) => {
+        const calumnosActualizados = alumnos.filter(
+          (inscripcion) =>
+            inscripcion.numeroDocumentoAlumno !=
+              inscripcionAEliminar.numeroDocumentoAlumno 
+        );
+        this.inscripcion$.next(calumnosActualizados);
+      },
+    });
+    return this.inscripcion$.asObservable();
+  }  
 }
