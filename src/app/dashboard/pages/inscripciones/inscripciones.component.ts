@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { map, startWith } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from '../cursos/cursos.component';
 import { CursosService } from '../cursos/Services/cursos.service';
@@ -55,8 +54,6 @@ export class InscripcionesComponent {
     this.dataSourceInscripcion.paginator = this.paginator;
   }
   inscripcionControl = new FormControl('');
-  //filteredCursos: Observable<Curso[]>;
-  //filteredAlumnos: Observable<Alumno[]>;
   idCursoInsc: number | null = null;
   idAlumnoInsc: number | null = null;
   nombreCursoControl = new FormControl('', [Validators.required]);
@@ -81,56 +78,24 @@ export class InscripcionesComponent {
       this.dataSourceCurso.data = curso;
     });
 
-    //this.inscripcionService.obtenerAlumnos().subscribe((inscripcion) => {
-    //  this.dataSourceInscripcion.data = inscripcion;
-    //});
-
-    // this.filteredCursos = this.nombreCursoControl.valueChanges.pipe(
-    //   startWith(''),
-    //   map((curso) =>
-    //     curso ? this._filteredCursos(curso) : this.dataSourceCurso.data.slice()
-    //   )
-    // );
-
     this.alumnoService.obtenerAlumnos().subscribe((alumno) => {
       this.dataSourceAlumno.data = alumno;
     });
-
-    // this.filteredAlumnos = this.nombreAlumnoControl.valueChanges.pipe(
-    //   startWith(''),
-    //   map((alumno) =>
-    //     alumno
-    //       ? this._filteredAlumnos(alumno)
-    //       : this.dataSourceAlumno.data.slice()
-    //   )
-    // );
   }
   ngOnDestroy(): void {
     this.inscripcionSuscription?.unsubscribe();
   }
   ngOnInit(): void {
-    this.inscripcionSuscription = this.inscripcionService.obtenerInscripcion().subscribe({
-      next: (inscripciones) => {
-        this.dataSourceInscripcion.data = inscripciones;
-      },
-    });
+    this.inscripcionSuscription = this.inscripcionService
+      .obtenerInscripcion()
+      .subscribe({
+        next: (inscripciones) => {
+          this.dataSourceInscripcion.data = inscripciones;
+        },
+      });
+
+      
   }
-
-  // private _filteredCursos(value: string): Curso[] {
-  //   const filterValue = value.toLowerCase();
-
-  //   return this.dataSourceCurso.data.filter((curso) =>
-  //     curso.nombreCurso.toLowerCase().includes(filterValue)
-  //   );
-  // }
-
-  // private _filteredAlumnos(value: string): Alumno[] {
-  //   const filterValue = value.toLowerCase();
-
-  //   return this.dataSourceAlumno.data.filter((alumno) =>
-  //     alumno.apellido.toLowerCase().includes(filterValue)
-  //   );
-  // }
 
   guardarCurso(cursoSeleccionado: Curso): void {
     this.idCursoInsc = cursoSeleccionado.id;
@@ -155,22 +120,18 @@ export class InscripcionesComponent {
         .subscribe((inscripciones) => {
           this.alumnolog = inscripciones;
         });
-        
-        this.nuevaInscripcion= {
-            idCurso: this.idCursoInsc,
-            nombreCurso: this.cursolog.nombreCurso,
-            fechaInicioCurso: this.cursolog.fechaInicio,
-            fechaFinCurso: this.cursolog.fechaFin,
-            nombreAlumno: this.alumnolog.nombre,
-            apellidoAlumno: this.alumnolog.apellido,
-            emailAlumno: this.alumnolog.email,
-            numeroDocumentoAlumno: this.alumnolog.numeroDocumento,
-          };
-          this.inscripcionService.inscribirAlumno(this.nuevaInscripcion);
-      // this.dataSourceInscripcion.data = [
-      //   this.nuevaInscripcion,
-      //   ...this.dataSourceInscripcion.data,
-      // ];
+
+      this.nuevaInscripcion = {
+        idCurso: this.idCursoInsc,
+        nombreCurso: this.cursolog.nombreCurso,
+        fechaInicioCurso: this.cursolog.fechaInicio,
+        fechaFinCurso: this.cursolog.fechaFin,
+        nombreAlumno: this.alumnolog.nombre,
+        apellidoAlumno: this.alumnolog.apellido,
+        emailAlumno: this.alumnolog.email,
+        numeroDocumentoAlumno: this.alumnolog.numeroDocumento,
+      };
+      this.inscripcionService.inscribirAlumno(this.nuevaInscripcion);
     }
   }
   eliminar(alumnoAEliminar: Inscripcion): void {
@@ -187,12 +148,6 @@ export class InscripcionesComponent {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.inscripcionService.eliminarInscripcion(alumnoAEliminar);
-        // this.dataSourceInscripcion.data =
-        //   this.dataSourceInscripcion.data.filter(
-        //     (alumnoActual) =>
-        //       alumnoActual.numeroDocumentoAlumno !==
-        //       alumnoAEliminar.numeroDocumentoAlumno
-        //   );
       }
     });
   }

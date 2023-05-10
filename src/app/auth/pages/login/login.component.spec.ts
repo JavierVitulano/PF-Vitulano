@@ -32,7 +32,6 @@ describe('Pruebas del LoginComponent', () => {
         RouterTestingModule,
         MatButtonModule,
         MatCardModule,
-        //SharedModule,
         MatIconModule,
       ],
       providers: [

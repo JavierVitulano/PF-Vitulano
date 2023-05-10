@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { UsuarioService } from './Service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbmUsuariosComponent } from './abm-usuarios/abm-usuarios.component';
@@ -12,7 +12,7 @@ import { DialogConfirmacionComponent } from 'src/app/shared/dialog/dialog-confir
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  styleUrls: ['./usuarios.component.scss'],
 })
 export class UsuariosComponent implements AfterViewInit {
   dataSource = new MatTableDataSource();
@@ -39,17 +39,13 @@ export class UsuariosComponent implements AfterViewInit {
   }
 
   usuariosSuscription: Subscription | null = null;
-  
+
   constructor(
     private matDialog: MatDialog,
     private usuariosService: UsuarioService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,    
-  ) {
-    // this.alumnosService.obtenerAlumnos().subscribe((alumnos) => {
-    //   this.dataSource.data = alumnos;
-    // });
-  }
+    private activatedRoute: ActivatedRoute
+  ) {}
   ngOnDestroy(): void {
     this.usuariosSuscription?.unsubscribe();
   }
@@ -60,25 +56,19 @@ export class UsuariosComponent implements AfterViewInit {
         this.dataSource.data = usuarios;
       },
     });
-
-   
+    
   }
   abrirABMUsuarios(): void {
     const dialog = this.matDialog.open(AbmUsuariosComponent);
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
         this.usuariosService.crearUsuario(valor);
-        // this.dataSource.data = [
-        //   { ...valor, fechaDeAlta: new Date() },
-        //   ...this.dataSource.data,
-        //   ,
-        // ];
       }
     });
   }
 
   eliminar(usaurioAEliminar: Usuario): void {
-    usaurioAEliminar={...usaurioAEliminar}
+    usaurioAEliminar = { ...usaurioAEliminar };
     const dialogRef = this.matDialog.open(DialogConfirmacionComponent, {
       data: {
         message:
@@ -92,10 +82,6 @@ export class UsuariosComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.usuariosService.eliminarUsuario(usaurioAEliminar);
-        // this.dataSource.data = this.dataSource.data.filter(
-        //   (alumnoActual) =>
-        //     alumnoActual.numeroDocumento !== alumnoAEliminar.numeroDocumento
-        // );
       }
     });
   }
@@ -108,12 +94,10 @@ export class UsuariosComponent implements AfterViewInit {
     });
     dialog.afterClosed().subscribe((valorDelFormulario) => {
       if (valorDelFormulario) {
-        this.usuariosService.editarUsuario(usuarioAEditar.id,valorDelFormulario);
-        // this.dataSource.data = this.dataSource.data.map((alumnoActual) =>
-        //   alumnoActual.numeroDocumento === alumnoAEditar.numeroDocumento
-        //     ? { ...alumnoActual, ...valorDelFormulario } 
-        //     : alumnoActual
-        // );
+        this.usuariosService.editarUsuario(
+          usuarioAEditar.id,
+          valorDelFormulario
+        );
       }
     });
   }
@@ -123,4 +107,3 @@ export class UsuariosComponent implements AfterViewInit {
     });
   }
 }
-

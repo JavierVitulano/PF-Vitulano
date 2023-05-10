@@ -13,7 +13,6 @@
         <br />
         <mat-form-field class="w-full">
           <mat-label>Contraseña</mat-label>
-          <!-- <input [formControl]="contrasenaControl" placeholder="contraseña" matInput /> -->
 
           <input
             [formControl]="passwordControl"
@@ -30,16 +29,19 @@
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
 
-          <mat-error
-            *ngFor="let error of passwordControl.errors | keyvalue"
-            >{{ error | controlErrorMessages }}</mat-error
-          >
+          <mat-error *ngFor="let error of passwordControl.errors | keyvalue">{{
+            error | controlErrorMessages
+          }}</mat-error>
         </mat-form-field>
 
         <div class="button-ingresar">
-          <button mat-flat-button color="primary" type="submit" class="button-ingresar"
-          [disabled]="loginForm.invalid"
-          (click)="login()"
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            class="button-ingresar"
+            [disabled]="loginForm.invalid"
+            (click)="login()"
           >
             Ingresar
           </button>

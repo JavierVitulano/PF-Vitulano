@@ -42,8 +42,6 @@ export class UsuarioService {
     return this.usuarios$.asObservable();
   }
 
-  // program to generate random strings
-
 
 generarToken():string{
   const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -56,7 +54,7 @@ generarToken():string{
     return result;
 }
   crearUsuario(nuevoUsuario: Usuario) : Observable<Usuario[]> {
-    this.httpClient.post<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios/`,nuevoUsuario).subscribe(() => console.log("usuario nuevo"));
+    this.httpClient.post<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios/`,{...nuevoUsuario,token:this.generarToken()}).subscribe(() => console.log("usuario nuevo"));
     this.usuarios$.pipe(take(1)).subscribe({
       next: (usuarios) => {
         this.usuarios$.next([
@@ -81,7 +79,7 @@ generarToken():string{
     usuarioId: number,
     actualizacion: Partial<Usuario>
   ): Observable<Usuario[]> {
-    this.httpClient.put<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios/${usuarioId}`,actualizacion).subscribe(() => console.log("usuario editado"));
+    this.httpClient.put<Usuario[]>(`${enviroment.apiBaseUrl}/usuarios/${usuarioId}`,{...actualizacion,token:this.generarToken()}).subscribe(() => console.log("usuario editado"));
      this.usuarios$.pipe(take(1))
     .subscribe({
        next: (usuarios) => {
@@ -90,6 +88,7 @@ generarToken():string{
              return {
                ...usuario,
                ...actualizacion,
+               token:this.generarToken()
              };
            } else {
              return usuario;

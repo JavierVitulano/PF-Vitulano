@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/services/AuthService';
 import { Usuario } from 'src/app/core/models';
 
 export interface Alumno {
-  id: number,
+  id: number;
   nombre: string;
   apellido: string;
   email: string;
@@ -53,7 +53,7 @@ export class AlumnosComponent implements AfterViewInit {
 
   alumnosSuscription: Subscription | null = null;
   authUser$: Observable<Usuario | null>;
-  
+
   constructor(
     private matDialog: MatDialog,
     private alumnosService: AlumnosService,
@@ -61,10 +61,7 @@ export class AlumnosComponent implements AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService
   ) {
-    this.authUser$ = this.authService.obtenerUsuarioAutenticado()
-    // this.alumnosService.obtenerAlumnos().subscribe((alumnos) => {
-    //   this.dataSource.data = alumnos;
-    // });
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
   }
   ngOnDestroy(): void {
     this.alumnosSuscription?.unsubscribe();
@@ -76,25 +73,18 @@ export class AlumnosComponent implements AfterViewInit {
         this.dataSource.data = alumnos;
       },
     });
-
-   
   }
   abrirABMAlumnos(): void {
     const dialog = this.matDialog.open(AbmAlumnosComponent);
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
         this.alumnosService.crearAlumno(valor);
-        // this.dataSource.data = [
-        //   { ...valor, fechaDeAlta: new Date() },
-        //   ...this.dataSource.data,
-        //   ,
-        // ];
       }
     });
   }
 
   eliminar(alumnoAEliminar: Alumno): void {
-    alumnoAEliminar={...alumnoAEliminar,fechaDeAlta: new Date()}
+    alumnoAEliminar = { ...alumnoAEliminar, fechaDeAlta: new Date() };
     const dialogRef = this.matDialog.open(DialogConfirmacionComponent, {
       data: {
         message:
@@ -108,10 +98,6 @@ export class AlumnosComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.alumnosService.eliminarAlumno(alumnoAEliminar);
-        // this.dataSource.data = this.dataSource.data.filter(
-        //   (alumnoActual) =>
-        //     alumnoActual.numeroDocumento !== alumnoAEliminar.numeroDocumento
-        // );
       }
     });
   }
@@ -124,10 +110,10 @@ export class AlumnosComponent implements AfterViewInit {
     });
     dialog.afterClosed().subscribe((valorDelFormulario) => {
       if (valorDelFormulario) {
-        this.alumnosService.editarAlumno(alumnoAEditar.id,valorDelFormulario);
+        this.alumnosService.editarAlumno(alumnoAEditar.id, valorDelFormulario);
         // this.dataSource.data = this.dataSource.data.map((alumnoActual) =>
         //   alumnoActual.numeroDocumento === alumnoAEditar.numeroDocumento
-        //     ? { ...alumnoActual, ...valorDelFormulario } 
+        //     ? { ...alumnoActual, ...valorDelFormulario }
         //     : alumnoActual
         // );
       }

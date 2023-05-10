@@ -24,9 +24,8 @@ export class DetalleCursosComponent {
   ];
   curso: Curso | undefined;
   dataSource = new MatTableDataSource<Inscripcion>();
-  //inscripcion: Inscripcion;
   private destroyed$ = new Subject();
- inscripcionSuscription: Subscription | null = null;
+  inscripcionSuscription: Subscription | null = null;
   nombreCursoControl = new FormControl();
 
   cursosDetalleForms = new FormGroup({
@@ -38,17 +37,17 @@ export class DetalleCursosComponent {
     private inscripcionService: InscripcionService,
     private matDialog: MatDialog
   ) {
-     this.cursosService
-       .obtenerCursoPorId(parseInt(this.activatedRoute.snapshot.params['id']))
-       .pipe(takeUntil(this.destroyed$))
-       .subscribe((curso) => (this.curso = curso));
-       if (this.curso){
-     this.nombreCursoControl.setValue(this.curso?.nombreCurso);
-        this.inscripcionService
-       .obtenerAlumnosPorCurso(this.curso.id)
-       .subscribe((inscripciones) => {
-         this.dataSource.data = inscripciones;
-       });
+    this.cursosService
+      .obtenerCursoPorId(parseInt(this.activatedRoute.snapshot.params['id']))
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((curso) => (this.curso = curso));
+    if (this.curso) {
+      this.nombreCursoControl.setValue(this.curso?.nombreCurso);
+      this.inscripcionService
+        .obtenerAlumnosPorCurso(this.curso.id)
+        .subscribe((inscripciones) => {
+          this.dataSource.data = inscripciones;
+        });
     }
   }
 
@@ -56,19 +55,7 @@ export class DetalleCursosComponent {
     this.destroyed$.next(true);
     this.inscripcionSuscription?.unsubscribe();
   }
-  ngOnInit(): void {
-      // this.inscripcionSuscription = this.inscripcionService.obtenerAlumnosPorCurso(parseInt(this.activatedRoute.snapshot.params['id'])).subscribe({
-      //   next: (alumnos) => {
-      //     this.dataSource.data = alumnos;
-      //   },
-      // });
-
-    // this.inscripcionSuscription = this.inscripcionService.obtenerInscripcion().subscribe({
-    //   next: (inscripciones) => {
-    //     this.dataSource.data = inscripciones;
-    //   },
-    // });
-  }
+  ngOnInit(): void {}
   eliminar(alumnoAEliminar: Inscripcion): void {
     const dialogRef = this.matDialog.open(DialogConfirmacionComponent, {
       data: {
@@ -82,12 +69,7 @@ export class DetalleCursosComponent {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.inscripcionService.eliminarInscripcionAlumno(alumnoAEliminar)
-        //  this.dataSource.data = this.dataSource.data.filter(
-        //    (alumnoActual) =>
-        //      alumnoActual.numeroDocumentoAlumno !==
-        //      alumnoAEliminar.numeroDocumentoAlumno
-        //  );
+        this.inscripcionService.eliminarInscripcionAlumno(alumnoAEliminar);
       }
     });
   }

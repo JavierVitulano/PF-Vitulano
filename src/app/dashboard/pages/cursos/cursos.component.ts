@@ -58,16 +58,7 @@ export class CursosComponent implements AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService
   ) {
-    // this.cursosService.obtenerCurso().subscribe((cursos) => {
-    //   this.dataSource.data = cursos;
-    // });
-
-    // this.cursosSuscription = this.cursosService.obtenerCursos().subscribe({
-    //   next: (cursos) => {
-    //     this.dataSource.data = cursos;
-    //   },
-    // });
-    this.authUser$ = this.authService.obtenerUsuarioAutenticado()
+    this.authUser$ = this.authService.obtenerUsuarioAutenticado();
   }
 
   ngOnDestroy(): void {
@@ -93,9 +84,6 @@ export class CursosComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.cursosService.eliminarCurso(cursoAEliminar);
-        // this.dataSource.data = this.dataSource.data.filter(
-        //   (cursoActual) => cursoActual.id !== cursoAEliminar.id
-        // );
       }
     });
   }
@@ -107,12 +95,7 @@ export class CursosComponent implements AfterViewInit {
     });
     dialog.afterClosed().subscribe((valorDelFormulario) => {
       if (valorDelFormulario) {
-         this.cursosService.editarCurso(cursoAEditar.id,valorDelFormulario);
-        // this.dataSource.data = this.dataSource.data.map((cursoActual) =>
-        //   cursoActual.id === cursoAEditar.id
-        //     ? { ...cursoActual, ...valorDelFormulario }
-        //     : cursoActual
-        // );
+        this.cursosService.editarCurso(cursoAEditar.id, valorDelFormulario);
       }
     });
   }
@@ -122,10 +105,6 @@ export class CursosComponent implements AfterViewInit {
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
         this.cursosService.crearCurso(valor);
-        // this.dataSource.data = [
-        //   { id: this.dataSource.data.length + 1, ...valor },
-        //   ...this.dataSource.data,
-        // ];
       }
     });
   }

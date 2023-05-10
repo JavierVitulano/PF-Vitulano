@@ -11,7 +11,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
-import { authModule } from 'src/app/auth/auth.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DetalleCursosComponent } from './detalle/detalleCursos.component';
@@ -29,7 +28,6 @@ import { CursosRoutingModule } from './cursos-routing.module';
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
-    //authModule,
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,

@@ -1,11 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, catchError, map, throwError ,of} from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map ,of} from 'rxjs';
 import { Usuario } from 'src/app/core/models';
 import { enviroment } from 'src/environments/environments';
-//import { Usuario } from 'src/app/interfaces/Usuario';
-//import { Usuario } from '../interfaces/Usuario';
 export interface LoginFormValue {
   email: string;
   password: string;

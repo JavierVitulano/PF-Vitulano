@@ -12,8 +12,8 @@
     {
       "nombre": "Facundo",
       "apellido": "Perez",
-      "email": "juan@email.com",
-      "password": "123456",
+      "email": "juan@mail.com",
+      "password": "12345678",
       "token": "nmdsgfjhuMDKSAFJASDK327SJDKANjsadnsah",
       "role": "user",
       "id": 4

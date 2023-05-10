@@ -8,26 +8,25 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { InscripcionesModule } from '../dashboard/pages/inscripciones/inscripciones.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
-import { authModule } from '../auth/auth.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { Title } from '@angular/platform-browser';
 
 
 
 @NgModule({
   declarations: [dashboardComponent],
+  providers: [
+    Title                   //Register the Service
+  ],
   imports: [
     CommonModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    //AlumnosModule,
-    //LoginModule,
-    //CursosModule,
     InscripcionesModule,
     RouterModule,
     MatListModule,
-    //authModule,
     DashboardRoutingModule
   ],
   exports: [dashboardComponent],

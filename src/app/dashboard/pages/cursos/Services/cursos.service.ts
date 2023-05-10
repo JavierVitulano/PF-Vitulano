@@ -16,9 +16,7 @@ export class CursosService {
     return this.cursos$.asObservable();
   }
   obtenerCurso(): Observable<Curso[]> {
-    //return this.cursos$.asObservable();
-    return this.httpClient.get<Curso[]>(`${enviroment.apiBaseUrl}/cursos`)
-    .pipe(
+    return this.httpClient.get<Curso[]>(`${enviroment.apiBaseUrl}/cursos`).pipe(
       tap((cursos) => this.cursos$.next(cursos)),
       mergeMap(() => this.cursos$.asObservable())
     );
@@ -31,13 +29,9 @@ export class CursosService {
   }
 
   eliminarCurso(cursoAEliminar: Curso): Observable<Curso[]> {
-
-     this.httpClient.delete<Curso[]>(`${enviroment.apiBaseUrl}/cursos/${cursoAEliminar.id}`).subscribe(() => console.log("curso deleted"));
-    // return this.httpClient.get<Curso[]>(`${enviroment.apiBaseUrl}/cursos`)
-    // .pipe(
-    //   tap((cursos) => this.cursos$.next(cursos)),
-    //   mergeMap(() => this.cursos$.asObservable())
-    // );
+    this.httpClient
+      .delete<Curso[]>(`${enviroment.apiBaseUrl}/cursos/${cursoAEliminar.id}`)
+      .subscribe(() => console.log('curso deleted'));
 
     this.cursos$.pipe(take(1)).subscribe({
       next: (cursos) => {
@@ -49,8 +43,10 @@ export class CursosService {
     });
     return this.cursos$.asObservable();
   }
-  crearCurso(nuevoCurso: Curso) : Observable<Curso[]> {
-    this.httpClient.post<Curso[]>(`${enviroment.apiBaseUrl}/cursos/`,nuevoCurso).subscribe(() => console.log("curso nuevo"));
+  crearCurso(nuevoCurso: Curso): Observable<Curso[]> {
+    this.httpClient
+      .post<Curso[]>(`${enviroment.apiBaseUrl}/cursos/`, nuevoCurso)
+      .subscribe(() => console.log('curso nuevo'));
     this.cursos$.pipe(take(1)).subscribe({
       next: (cursos) => {
         this.cursos$.next([
@@ -72,28 +68,27 @@ export class CursosService {
     cursoId: number,
     actualizacion: Partial<Curso>
   ): Observable<Curso[]> {
-      this.httpClient.put<Curso[]>(`${enviroment.apiBaseUrl}/cursos/${cursoId}`,actualizacion).subscribe(() => console.log("curso editado"));
+    this.httpClient
+      .put<Curso[]>(`${enviroment.apiBaseUrl}/cursos/${cursoId}`, actualizacion)
+      .subscribe(() => console.log('curso editado'));
 
+    this.cursos$.pipe(take(1)).subscribe({
+      next: (cursos) => {
+        const cursosActualizados = cursos.map((curso) => {
+          if (curso.id === cursoId) {
+            return {
+              ...curso,
+              ...actualizacion,
+            };
+          } else {
+            return curso;
+          }
+        });
 
-     this.cursos$.pipe(take(1))
-    .subscribe({
-       next: (cursos) => {
-         const cursosActualizados = cursos.map((curso) => {
-           if (curso.id === cursoId) {
-             //return this.httpClient.put<Curso[]>(`${enviroment.apiBaseUrl}/cursos/${curso.id}`,actualizacion).subscribe(() => console.log("curso editado"));
-              return {
-                ...curso,
-                ...actualizacion,
-              };
-           } else {
-             return curso;
-           }
-         });
+        this.cursos$.next(cursosActualizados);
+      },
+    });
 
-         this.cursos$.next(cursosActualizados);
-       },
-     });
-     
     return this.cursos$.asObservable();
   }
 }
