@@ -7,6 +7,7 @@ import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
   {path: 'dashboard',
+  title:'Home',
   canActivate: [AuthGuard],
   component : dashboardComponent,
   loadChildren: ()=> import ('./dashboard/dashboard.module').then((m)=> m.dashboardModule)
