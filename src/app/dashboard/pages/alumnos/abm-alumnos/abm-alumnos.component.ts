@@ -53,6 +53,5 @@ export class AbmAlumnosComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
   }
 }

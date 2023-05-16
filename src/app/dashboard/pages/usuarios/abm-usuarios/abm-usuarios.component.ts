@@ -60,6 +60,6 @@ export class AbmUsuariosComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
+    
   }
 }

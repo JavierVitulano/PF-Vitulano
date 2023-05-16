@@ -28,7 +28,7 @@ export class LoginComponent {
   });
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) {
-    console.log(this.activatedRoute.snapshot);
+    
     }
     
   login(): void {

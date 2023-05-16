@@ -43,7 +43,7 @@ export class AlumnosService {
   // }
 
   crearAlumno(nuevoAlumno: Alumno)  : Observable<Alumno[]> {
-   this.httpClient.post<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos`,{...nuevoAlumno,fechaDeAlta: formatDate ( new Date(),'yyyy-MM-dd HH:mm','en')}).subscribe(() => console.log("alumno nuevo"));
+   this.httpClient.post<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos`,{...nuevoAlumno,fechaDeAlta: formatDate ( new Date(),'yyyy-MM-dd HH:mm','en')}).subscribe();
     this.estudiantes$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         this.estudiantes$.next([{...nuevoAlumno,fechaDeAlta: new Date()}, ...alumnos]);
@@ -54,7 +54,7 @@ export class AlumnosService {
   }
 
   eliminarAlumno(alumnoAEliminar: Alumno) : Observable<Alumno[]>{
-    this.httpClient.delete<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos/${alumnoAEliminar.id}`).subscribe(() => console.log("alumno deleted"));
+    this.httpClient.delete<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos/${alumnoAEliminar.id}`).subscribe();
     this.estudiantes$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         const calumnosActualizados = alumnos.filter(
@@ -70,7 +70,7 @@ export class AlumnosService {
     actualizacion: Partial<Alumno>
   ): Observable<Alumno[]> {
     if (actualizacion.fechaDeAlta){
-    this.httpClient.put<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos/${alumnoId}`,{...actualizacion,fechaDeAlta: formatDate (actualizacion.fechaDeAlta,'yyyy-MM-dd HH:mm','en')}).subscribe(() => console.log("alumno editado"));
+    this.httpClient.put<Alumno[]>(`${enviroment.apiBaseUrl}/alumnos/${alumnoId}`,{...actualizacion,fechaDeAlta: formatDate (actualizacion.fechaDeAlta,'yyyy-MM-dd HH:mm','en')}).subscribe();
     }
     this.estudiantes$.pipe(take(1)).subscribe({
       next: (alumnos) => {

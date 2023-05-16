@@ -55,7 +55,7 @@ export class InscripcionService {
         `${enviroment.apiBaseUrl}/inscripciones/`,
         nuevaInscripcion
       )
-      .subscribe(() => console.log('inscripcion nueva'));
+      .subscribe();
     this.inscripcion$.pipe(take(1)).subscribe({
       next: (inscripciones) => {
         this.inscripcion$.next([nuevaInscripcion, ...inscripciones]);
@@ -70,7 +70,7 @@ export class InscripcionService {
       .delete<Inscripcion[]>(
         `${enviroment.apiBaseUrl}/inscripciones/${inscripcionAEliminar.id}`
       )
-      .subscribe(() => console.log('inscripcion deleted'));
+      .subscribe();
     this.inscripcion$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         const calumnosActualizados = alumnos.filter(
@@ -92,7 +92,7 @@ export class InscripcionService {
       .delete<Inscripcion[]>(
         `${enviroment.apiBaseUrl}/inscripciones/${inscripcionAEliminar.id}`
       )
-      .subscribe(() => console.log('inscripcion deleted'));
+      .subscribe();
     this.inscripcion$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         const calumnosActualizados = alumnos.filter(
@@ -110,7 +110,7 @@ export class InscripcionService {
       .delete<Inscripcion[]>(
         `${enviroment.apiBaseUrl}/inscripciones/${inscripcionAEliminar.id}`
       )
-      .subscribe(() => console.log('inscripcion deleted'));
+      .subscribe();
     this.inscripcion$.pipe(take(1)).subscribe({
       next: (alumnos) => {
         const calumnosActualizados = alumnos.filter(

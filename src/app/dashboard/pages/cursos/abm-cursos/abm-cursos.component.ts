@@ -43,6 +43,5 @@ export class AbmCursosComponent implements OnInit {
   }
 
   ngOnInit() {
-   // console.log(this.data);
   }
 }

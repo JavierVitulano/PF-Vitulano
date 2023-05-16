@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/AuthService';
 import { Usuario } from '../core/models';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,7 +17,6 @@ export class dashboardComponent {
   destroyed$ = new Subject<void>();
 
   links = links;
-
   constructor(private authService: AuthService, private router: Router) {
     this.authUser$ = this.authService.obtenerUsuarioAutenticado();
   }

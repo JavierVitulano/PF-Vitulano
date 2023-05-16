@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { authModule } from './auth/auth.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     authModule,
     MatNativeDateModule, 
-    HttpClientModule
+    HttpClientModule, StoreModule.forRoot({}, {}), EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

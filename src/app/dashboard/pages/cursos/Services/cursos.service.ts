@@ -31,7 +31,7 @@ export class CursosService {
   eliminarCurso(cursoAEliminar: Curso): Observable<Curso[]> {
     this.httpClient
       .delete<Curso[]>(`${enviroment.apiBaseUrl}/cursos/${cursoAEliminar.id}`)
-      .subscribe(() => console.log('curso deleted'));
+      .subscribe();
 
     this.cursos$.pipe(take(1)).subscribe({
       next: (cursos) => {
@@ -46,7 +46,7 @@ export class CursosService {
   crearCurso(nuevoCurso: Curso): Observable<Curso[]> {
     this.httpClient
       .post<Curso[]>(`${enviroment.apiBaseUrl}/cursos/`, nuevoCurso)
-      .subscribe(() => console.log('curso nuevo'));
+      .subscribe();
     this.cursos$.pipe(take(1)).subscribe({
       next: (cursos) => {
         this.cursos$.next([
@@ -70,7 +70,7 @@ export class CursosService {
   ): Observable<Curso[]> {
     this.httpClient
       .put<Curso[]>(`${enviroment.apiBaseUrl}/cursos/${cursoId}`, actualizacion)
-      .subscribe(() => console.log('curso editado'));
+      .subscribe();
 
     this.cursos$.pipe(take(1)).subscribe({
       next: (cursos) => {
